@@ -28,6 +28,13 @@ public class ProductoController {
         return "catalogo"; // Vista del catalogo
     }
 
+    
+    @GetMapping("/catalogoUsuario")
+    public String mostrarCatalogo(Model model){
+        model.addAttribute("productos", productoService.obtenerTodosLosProductos());
+        return "producto"; // Vista del catalogo
+    }
+
     // Editar un producto existente
     @GetMapping("/editarProducto/{id}")
     public String editarProducto(@PathVariable Long id, Model model){

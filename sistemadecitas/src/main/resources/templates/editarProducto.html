@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Productos</title>
+</head>
+<body>
+<h1>Editar Producto</h1>
+<form th:action="@{/guardarProducto}" th:object="${producto}" method="post">
+    <input type="hidden" th:field="*{id}"/>  <!-- Campo oculto para el ID -->
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" th:field="*{nombre}"><br>
+
+    <label for="imagenUrl">URL de la Imagen:</label>
+    <input type="text" id="imagenUrl" th:field="*{imagenUrl}"><br>
+
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" th:field="*{precio}" step="0.01"><br>
+
+    <button type="submit">Guardar Cambios</button>
+</form>
+<a href="/catalogo">Volver al catalogo</a>
+</body>
+</html>
