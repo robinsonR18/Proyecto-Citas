@@ -31,9 +31,9 @@ public class ReservaController {
     // Procesar la reserva (POST)
     @PostMapping("/reservar")
     public String realizarReserva(Reserva reserva, Model model) {
-        // Verificar si el servicio está disponible en la fecha y hora seleccionada
+        // Verificar si el servicio está disponible en la fecha y hora seleccionada, considerando la duración
         boolean disponible = reservaService.verificarDisponibilidad(reserva.getServicio(), reserva.getFechaHora());
-
+    
         if (disponible) {
             // Realizar la reserva
             reservaService.realizarReserva(reserva.getServicio(), reserva.getFechaHora());
@@ -43,7 +43,8 @@ public class ReservaController {
             // Mostrar mensaje de error si la reserva no es posible
             model.addAttribute("mensaje", "El servicio ya está reservado para esa fecha y hora.");
             model.addAttribute("servicios", servicioService.ObtenerTodosLosServicios());
-            return "reservar";  // Volver al formulario de reserva
+            return "crearReserva";  // Volver al formulario de reserva
         }
     }
+    
 }
