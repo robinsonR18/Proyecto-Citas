@@ -4,27 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Producto</title>
+    <!-- Enlace a Bootstrap 5.3.5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Establecemos un tamaño máximo y un ajuste proporcional para la vista previa de la imagen */
+        #imagePreview {
+            max-width: 300px; /* Ajusta el tamaño máximo que deseas */
+            max-height: 300px; /* Ajusta el tamaño máximo que deseas */
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>Agregar un Nuevo Producto</h1>
+<header class="bg-primary text-white py-3">
+    <div class="container">
+        <h1>Agregar un Nuevo Producto</h1>
+    </div>
 </header>
 
-<form th:action="@{/guardarProducto}" th:object="${producto}" method="post">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" th:field="*{nombre}" required><br>
+<div class="container my-5">
+    <form th:action="@{/guardarProducto}" th:object="${producto}" method="post">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required>
+        </div>
 
-    <label for="imagenUrl">URL de la Imagen:</label>
-    <input type="text" id="imagenUrl" th:field="*{imagenUrl}" required><br>
+        <div class="mb-3">
+            <label for="imagenUrl" class="form-label">URL de la Imagen:</label>
+            <input type="text" id="imagenUrl" th:field="*{imagenUrl}" class="form-control" required>
+        </div>
 
-    <label for="precio">Precio:</label>
-    <input type="number" id="precio" th:field="*{precio}" step="0.01" required><br>
+        <!-- Vista previa de la imagen -->
+        <div class="mb-3" id="imagePreviewContainer" style="display: none;">
+            <label class="form-label">Vista Previa:</label>
+            <img id="imagePreview" src="" alt="Vista previa de la imagen" class="img-fluid">
+        </div>
 
-    <button type="submit">Guardar Producto</button>
-</form>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio:</label>
+            <input type="number" id="precio" th:field="*{precio}" class="form-control" step="0.01" required>
+        </div>
 
-<footer>
-    <a href="/catalogo">Volver al catalogo</a>
+        <button type="submit" class="btn btn-primary">Guardar Producto</button>
+    </form>
+</div>
+
+<footer class="bg-light py-3">
+    <div class="container text-center">
+        <a href="/catalogo" class="btn btn-link">Volver al catálogo</a>
+    </div>
 </footer>
+
+<!-- Scripts de Bootstrap y JS para la vista previa de la imagen -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Función para actualizar la vista previa de la imagen
+    document.getElementById('imagenUrl').addEventListener('input', function () {
+        var imageUrl = this.value;
+        var imagePreview = document.getElementById('imagePreview');
+        var imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+        if (imageUrl) {
+            // Mostrar la imagen si la URL es válida
+            imagePreview.src = imageUrl;
+            imagePreviewContainer.style.display = 'block';
+        } else {
+            // Ocultar la vista previa si no hay URL
+            imagePreviewContainer.style.display = 'none';
+        }
+    });
+</script>
+
 </body>
 </html>

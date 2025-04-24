@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,38 +12,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary py-3 sticky-top shadow">
-            <div class="container-fluid px-4"> <!-- Padding horizontal agregado -->
-                <!-- Logo con margen a la derecha -->
-                <a class="navbar-brand fw-bold me-4" href="#">Rossy</a>
-
-                <!-- Botón de menú para móviles -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Menú colapsable -->
-                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link px-3" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link px-3" href="#nosotros">Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link px-3" href="#servicios">Servicios</a></li>
-                        <li class="nav-item"><a class="nav-link px-3" href="/catalogoUsuario">Producto</a></li>
-                        <li class="nav-item"><a class="nav-link px-3" href="contacto.html">Contacto</a></li>
-                    </ul>
-
-                    <!-- Íconos sociales con margen izquierdo y separados -->
-                    <div
-                        class="d-flex justify-content-center justify-content-lg-end align-items-center gap-3 mt-3 mt-lg-0 ms-lg-4">
-                        <a href="#"><i class="fa-brands fa-facebook fa-lg text-dark"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram fa-lg text-dark"></i></a>
-                        <a href="#"><i class="fa-brands fa-tiktok fa-lg text-dark"></i></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <div th:replace="fragments :: navbar"></div>
     </header>
     <section>
         <section class="inicio" id="inicio">
@@ -52,7 +21,7 @@
                 <span>
                     <h3>Barberia y Peluqueria</h3>
                 </span>
-                <a href="#" class="btn">conocenos</a>
+                <a href="#nosotros" class="btn">conocenos</a>
             </div>
         </section>
     </section>
@@ -60,7 +29,7 @@
         <h1 class="heading text-center" style="background-color: rgb(255, 236, 239);"><span> Bienvenidos a Rossy </span> </h1>
     </section>    
     <section>
-        <div class="">
+        <div id="nosotros" class="nosotros">
             <!-- Academia inicio -->
             <section class="nosotros py-5">
                 <div class="container-fluid">
@@ -150,7 +119,7 @@
 
         </div>
         <div class="text-center mt-4">
-            <a href="reserva.html" class="btn btn-sm btn-primary">Reserva Cita</a>
+            <a th:href="@{/servicios}" class="btn btn-sm btn-primary">Reserva Cita</a>
         </div>
     </section>
     <section id="productos" class="py-5">
@@ -158,7 +127,7 @@
         <div class="container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="image/producto1.jpg" class="img-fluid" alt="Producto 1"></div>
+                    <div class="swiper-slide"><img src="image/producto7.jpg" class="img-fluid" alt="Producto 1"></div>
                     <div class="swiper-slide"><img src="image/producto2.jpg" class="img-fluid" alt="Producto 2"></div>
                     <div class="swiper-slide"><img src="image/producto3.jpg" class="img-fluid" alt="Producto 3"></div>
                     <div class="swiper-slide"><img src="image/producto4.jpg" class="img-fluid" alt="Producto 4"></div>
@@ -190,37 +159,9 @@
             </form>
         </div>
     </section>
-    <footer class="bg-dark text-white text-center py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Sobre Nosotros</h5>
-                    <p>
-                        Somos un referente en
-                        estilismo y barbería, ofreciendo
-                        excelencia y un ambiente acogedo.
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Contacto</h5>
-                    <ul class="list-unstyled">
-                        <li>Email: Rossy@SalondeBelleza.com</li>
-                        <li>Teléfono: +51 936 122 909</li>
-                        <li>Dirección: Avenida Los Virreyes Mz "B" LT "1C" Urb. Zabaleta Ate Vitarte, Lima, Perú</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Síguenos</h5>
-                    <a href="https://www.facebook.com/R1deportes" class="text-white me-3"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/r1deportes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                        class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white me-3"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
-        <p class="mb-0">&copy; 2025 MiSitio. Todos los derechos reservados.</p>
-    </footer>
+    <!--footer-->
+    <div th:replace="fragments :: footer"></div>
+    <!--fin footer-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
