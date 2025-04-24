@@ -20,9 +20,6 @@ public class PaginaController {
     public String MostrarContacto() {
         return "contacto";
     }
-    @GetMapping("/servicios")
-    public String MostrarServicios() {
-        return "servicios";
-    }
+
     
 }
